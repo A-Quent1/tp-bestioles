@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<meta charset="utf-8">
+	<title>Détail d'un animal</title>
+</head>
+<body>
+	<h1>Détail d'un animal</h1>
+
+	<form th:object="${animal}" th:action="@{/animal}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        
+        <div>
+            <label for="color">Sa couleur :</label>
+            <input type="text"  th:field="*{color}" th:placeholder ="${animal.color}" id="color" />
+        </div>
+        
+        <div>
+            <label for="name">Son nom : </label>
+            <input type="text" th:field="*{name}"  th:placeholder="${animal.name}" id="name" />
+        </div>
+        
+        <div>
+            <label for="sex">Son sexe :</label>
+            <input type="text"  th:field="*{sex}" th:placeholder ="${animal.sex}" id="sex" />
+        </div>
+        
+        <div>
+            <label for="species">Son espèce :</label>
+            <select name="species" th:field="*{species}" id="species" />
+                <option th:each="specie : ${species}" 
+                th:value="${specie.id}"  
+                th:selected="${animal.species.getCommonName()==specie.getCommonName()}" 
+                th:text=${specie.getCommonName()} >
+        </div>
+        
+        <div>
+            <input type="submit" class="button" value="Modifier" />
+            <input type="button" class="button" value="Retour" onclick="window.location='/animal'" />
+        </div>
+        
+    </form>
+
+</body>

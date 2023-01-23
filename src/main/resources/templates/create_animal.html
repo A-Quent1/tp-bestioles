@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <meta charset="utf-8">
+    <title>Créer un animal</title>
+</head>
+
+<body>
+	<h1>Créer un animal</h1>
+	
+    <form th:object="${animal}" th:action="@{/animal}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        
+        <div>
+            <label for="Name">Saisir un nom : </label>
+            <input type="text" th:field="*{name}" id="name" />
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span>
+        </div>
+        
+        <div>
+            <label for="sex">Saisir un sexe :</label>
+            <input type="text" th:field="*{sex}" id="sex" />
+            <span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Error</span>
+        </div>
+        
+        <div>
+            <label for="color">Saisir une couleur :</label>
+            <input type="text" th:field="*{color}" id="color" />
+            <span th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Error</span>
+        </div>
+        
+        <div>
+            <label for="species">Choisir une espèce :</label>
+            <select th:field="*{species}" id="species" />
+            <option selected disabled>Sélectionner une espèce </option>
+            <option th:each="specie : ${species}" th:value="${specie.getId()}" th:text=${specie.getCommonName()}>
+        </div>
+        </br>
+        <div>
+            <input type="submit" class="button" value="Créer" />
+            <input type="button" class="button" value="Retour" onclick="window.location='/animal'" />
+        </div>
+        
+    </form>
+
+</body>

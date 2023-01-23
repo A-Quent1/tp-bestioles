@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <meta charset="utf-8">
+    <title>Détail d'une espèce</title>
+</head>
+
+<body>
+	<h1>Détail d'une espèce</h1>
+
+    <form th:object="${species}" th:action="@{/specie}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        
+        <div>
+            <label for="commonName">Son nom commun : </label>
+            <input type="text" th:field="*{commonName}" th:placeholder="${species.getCommonName()}" id="commonName" />
+        </div>
+        
+        <div>
+            <label for="latinName">Son nom latin :</label>
+            <input type="text" th:field="*{latinName}" th:placeholder="${species.getLatinName()}" id="latinName" />
+        </div>
+        
+        <div>
+            <input type="submit" class="button" value="Modifier" />
+            <input type="button" class="button" value="Retour" onclick="window.location='/specie'" />
+        </div>
+        
+    </form>
+
+</body>

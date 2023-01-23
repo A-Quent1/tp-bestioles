@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <meta charset="utf-8">
+    <title>Liste des personnes</title>
+</head>
+
+<body>
+    <h1>Liste des personnes</h1>
+    
+    <table class="mainTable">
+        <thead>
+            <tr>
+            	<th>Âge</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+        </thead>
+        <tbody>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.getLastname()}" />
+                <td th:text="${person.getFirstname()}" />
+                <td th:text="${person.getAge()}" />
+                <td><a th:href="@{'/person/' + ${person.id}}">Modifier</a></td>>
+                <td><a th:href="@{'/person/delete/' + ${person.id}}">Supprimer</a></td>>
+            
+            </tr>
+        </tbody>
+    
+    </table>
+        <button type="button" onclick="window.location='/person/create'">➕ Ajouter une personne</button>
+</body>
